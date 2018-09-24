@@ -23,7 +23,7 @@ class ViewController: UIViewController {
 
     @IBAction func Add(_ sender: Any) {
         let node = SCNNode()
-        node.geometry = SCNBox(width: 0.05, height: 0.05, length: 0.05, chamferRadius: 0.03)
+        node.geometry = SCNBox(width: 0.05, height: 0.05, length: 0.05, chamferRadius: 0.05 / 2)
         node.geometry?.firstMaterial?.diffuse.contents = UIColor.blue
         node.geometry?.firstMaterial?.specular.contents = UIColor.white
         let x = getRandomNumber(minValue: -0.3, maxValue: 0.3)
