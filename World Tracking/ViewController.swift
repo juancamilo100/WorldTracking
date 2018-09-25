@@ -22,15 +22,32 @@ class ViewController: UIViewController {
     }
 
     @IBAction func Add(_ sender: Any) {
-        let node = SCNNode()
-        node.geometry = SCNBox(width: 0.05, height: 0.05, length: 0.05, chamferRadius: 0.05 / 2)
-        node.geometry?.firstMaterial?.diffuse.contents = UIColor.blue
-        node.geometry?.firstMaterial?.specular.contents = UIColor.white
-        let x = getRandomNumber(minValue: -0.3, maxValue: 0.3)
-        let y = getRandomNumber(minValue: -0.3, maxValue: 0.3)
-        let z = getRandomNumber(minValue: -0.3, maxValue: 0.3)
-        node.position = SCNVector3(x, y, z)
-        self.sceneView.scene.rootNode.addChildNode(node)
+//        let doorNode = SCNNode(geometry: SCNPlane(width: 0.03, height: 0.06))
+//        let pyramidNode = SCNNode(geometry: SCNPyramid(width: 0.1, height: 0.1, length: 0.1))
+//        let boxNode = SCNNode(geometry: SCNBox(width: 0.1, height: 0.1, length: 0.1, chamferRadius: 0))
+//
+//        pyramidNode.geometry?.firstMaterial?.diffuse.contents = UIColor.red
+//        pyramidNode.geometry?.firstMaterial?.specular.contents = UIColor.white
+//        pyramidNode.position = SCNVector3(0, 0.05, 0)
+//
+//        doorNode.geometry?.firstMaterial?.diffuse.contents = UIColor.brown
+//        doorNode.geometry?.firstMaterial?.specular.contents = UIColor.white
+//        doorNode.position = SCNVector3(0, -0.02, 0.051)
+//
+//        boxNode.geometry?.firstMaterial?.diffuse.contents = UIColor.blue
+//        boxNode.geometry?.firstMaterial?.specular.contents = UIColor.white
+//        boxNode.position = SCNVector3(0, 0, 0)
+//
+//        boxNode.addChildNode(pyramidNode)
+//        boxNode.addChildNode(doorNode)
+//        self.sceneView.scene.rootNode.addChildNode(boxNode)
+        
+        
+        let pyramidNode = SCNNode(geometry: SCNPyramid(width: 0.1, height: 0.1, length: 0.1))
+        pyramidNode.geometry?.firstMaterial?.diffuse.contents = UIColor.blue
+        pyramidNode.position = SCNVector3(0, 0.05, 0)
+        pyramidNode.eulerAngles = SCNVector3(Float(90.degreesToRadianes()), 0, 0)
+        self.sceneView.scene.rootNode.addChildNode(pyramidNode)
     }
     
     @IBAction func Reset(_ sender: Any) {
@@ -48,5 +65,10 @@ class ViewController: UIViewController {
     func getRandomNumber(minValue: CGFloat, maxValue: CGFloat) -> CGFloat {
         return CGFloat(arc4random()) / CGFloat(UINT32_MAX) * abs(minValue - maxValue) + min(minValue, maxValue)
     }
+}
+
+extension Int {
+    var degreesToRadians: Double { return Double(self) * .pi/180}
+    func degreesToRadianes() -> Double { return Double(self) * .pi/180 }
 }
 
